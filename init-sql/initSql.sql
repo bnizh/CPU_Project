@@ -1,0 +1,35 @@
+CREATE TABLE USERS (
+  id VARCHAR(11) NOT NULL PRIMARY KEY,
+  name NVARCHAR(255),
+  mobile VARCHAR(64),
+  birthDate DATE,
+  email VARCHAR(64),
+  password VARCHAR(255)
+)
+
+CREATE TABLE USER_PERMISSION (
+  userId VARCHAR(11) NOT NULL UNIQUE,
+  patient BINARY,
+  laborant BINARY,
+  doctor BINARY,
+  admin BINARY,
+  operator BINARY,
+  reception BINARY,
+  pharmacy BINARY,
+  FOREIGN KEY (userId) REFERENCES USERS(id)
+)
+
+CREATE TABLE HOSPITAL (
+  id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+  name NVARCHAR(64),
+  address NVARCHAR(128),
+  phoneNumber NVARCHAR(64)
+)
+
+CREATE TABLE HOSPITAL_USERS(
+  userID VARCHAR(11) NOT NULL,
+  hospitalID int NOT NULL,
+  UNIQUE (userID, hospitalID),
+  FOREIGN KEY (userID) REFERENCES USERS(id),
+  FOREIGN KEY (hospitalID) REFERENCES HOSPITAL(id)
+)
