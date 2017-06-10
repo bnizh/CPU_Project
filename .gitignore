@@ -19,6 +19,8 @@
 
 .idea
 
+/cpu-frontend/build
+
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
