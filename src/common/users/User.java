@@ -9,23 +9,19 @@ import java.util.List;
 public class User {
 
 	private String name;
-	private String surName;
 	private String id;
 	private String email;
 	private String mobile;
 	private Date birthDate;
-	private String userName;
 	private String password;
 	private List<Permission> permissions;
 
 	public User(String name, String surName, String id, String email, String mobile, Date birthDate, String userName, String password, List<Permission> permissions) {
 		this.name = name;
-		this.surName = surName;
 		this.id = id;
 		this.email = email;
 		this.mobile = mobile;
 		this.birthDate = birthDate;
-		this.userName = userName;
 		this.password = password;
 		this.permissions = permissions;
 	}
@@ -36,14 +32,6 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getSurName() {
-		return surName;
-	}
-
-	public void setSurName(String surName) {
-		this.surName = surName;
 	}
 
 	public String getId() {
@@ -76,14 +64,6 @@ public class User {
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getPassword() {

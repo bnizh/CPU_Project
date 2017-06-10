@@ -1,0 +1,27 @@
+{
+  "name": "cpu_frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-datepicker": "^0.47.0",
+    "react-dom": "^15.5.4",
+    "semantic-ui-react": "latest",
+    "moment": "latest",
+    "moment-range": "^2.1.0",
+    "react-date-picker": "latest",
+    "jquery": "latest",
+    "lodash": "latest",
+    "prop-types": "latest",
+    "classnames": "latest"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.7"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
