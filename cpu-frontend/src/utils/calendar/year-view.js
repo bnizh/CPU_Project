@@ -83,7 +83,7 @@ export default class YearsView extends React.Component {
 
   rangeCheck = currYear => {
     const { years } = this.state
-    if (years.length == 0) {
+    if (years.length === 0) {
       return false
     }
     return years[0].label <= currYear && years[years.length - 1].label >= currYear
@@ -98,7 +98,7 @@ export default class YearsView extends React.Component {
       _class = cs({
         year: true,
         disabled: item.disabled,
-        current: item.label == currYear
+        current: item.label === currYear
       })
       return <Cell value={item.label} classes={_class} key={i} />
     })

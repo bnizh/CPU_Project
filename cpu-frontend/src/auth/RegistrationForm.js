@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Icon, Form, Input, Progress } from 'semantic-ui-react';
 import $ from 'jquery';
 import Calendar from '../utils/calendar/index'
+import md5 from 'js-md5'
 
 class RegistrationForm extends React.Component {
 
@@ -35,7 +36,7 @@ class RegistrationForm extends React.Component {
         }
         score += (variationCount - 1) * 10;
         score = (score/60)*100;
-        this.setState({ passScore: score, incorrectMail: false });
+        this.setState({ passScore: score });
     }
 
     handleLoginKeyUp = (componentId) => {
@@ -43,8 +44,6 @@ class RegistrationForm extends React.Component {
             let input = $('#' + componentId);
             if (input.val().length > 11) {
                 input.val(input.val().substring(0, 11));
-            } else if (!$.isNumeric(input.val())) {
-                input.val(input.val().substring(0, input.val().length - 1));
             }
         } else if (componentId === 'passInput') {
             this.updatePassScore();
@@ -57,7 +56,7 @@ class RegistrationForm extends React.Component {
                 <span>{this.props.header}</span>
                 <Form onSubmit={this.postRequest}>
                     <Form.Field>
-                        <Input id="idInput" onChange={() => this.handleLoginKeyUp('idInput')}
+                        <Input type='number' id="idInput" onChange={() => this.handleLoginKeyUp('idInput')}
                             label={{ icon: 'asterisk' }}
                             labelPosition='left corner'
                             placeholder='პირადი ნომერი'
@@ -79,13 +78,20 @@ class RegistrationForm extends React.Component {
                         />
                     </Form.Field>
                     <Form.Field>
-                        <Input id='mailInput' iconPosition='left' placeholder='Email'>
+                        <Input id='mailInput' type={'mail'} iconPosition='left' placeholder='Email'>
                             <Icon name='at' />
                             <input />
                         </Input>
                     </Form.Field>
                     <Form.Field>
-                        <Calendar inputFieldId={"dateInput"} />
+                        <Input type='number' id="mobileInput"
+                               label={{ icon: 'asterisk' }}
+                               labelPosition='left corner'
+                               placeholder='ტელეფონის ნომერი'
+                        />
+                    </Form.Field>
+                    <Form.Field>
+                        <Calendar format={"DD-MM-YYYY"} closeOnSelect={true} todayText={'დღეს'} inputFieldClass={"dateValue"} placeholder={'აირჩიეთ დაბადების თარიღი'} nonEditable={true} inputFieldId={"dateInput"} />
                     </Form.Field>
                     <Button type='submit'>დადასტურება</Button>
                 </Form>
@@ -94,17 +100,20 @@ class RegistrationForm extends React.Component {
     }
 
     postRequest = () => {
-       /* let md5 = $.md5($('#passInput').val());*/
+        let pass = md5($('#passInput').val());
+        let data = {
+            id : $('#idInput').val(),
+            pass : pass,
+            email : $('#mailInput').val(),
+            name : $('#nameInput').val(),
+            date : $('#dateInput').val(),
+            mobile : $('#mobileInput').val()
+        };
+        console.log(data);
         $.ajax({
             url: "http://localhost:8080/signUp",
             method: "POST",
-            data: {
-                id : $('#idInput').val(),
-                pass : $('#passInput').val(),
-                email : $('#mailInput').val(),
-                name : $('#nameInput').val(),
-                date : $('#dateInput').val()
-            },
+            data: data,
             dataType: "html"
         });
     }

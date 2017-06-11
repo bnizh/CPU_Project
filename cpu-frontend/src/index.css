@@ -17,7 +17,8 @@ body {
   box-shadow: 0 0 9px 5px rgba(0,0,0,0.05);
   background-color: #fff;
   text-align: center;
-  left: 140px;
+  left: 35%;
+  bottom: 100%;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -42,8 +43,8 @@ body {
 .input-calendar .calendar-icon {
   display: inline-block;
   padding: 0px 1px 0 5px;
-  height: 27px;
-  line-height: 27px;
+  height: 40px;
+  line-height: 40px;
   transform: translateY(4px);
   cursor: pointer;
 }
@@ -163,4 +164,17 @@ body {
   right: 1px;
   font-size: 20px;
   color: #F39C12;
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.dateValue {
+  width: 95% !important;
 }

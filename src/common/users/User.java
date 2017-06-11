@@ -16,14 +16,13 @@ public class User {
 	private String password;
 	private List<Permission> permissions;
 
-	public User(String name, String surName, String id, String email, String mobile, Date birthDate, String userName, String password, List<Permission> permissions) {
+	public User(String name, String id, String email, String mobile, Date birthDate, String password) {
 		this.name = name;
 		this.id = id;
 		this.email = email;
 		this.mobile = mobile;
 		this.birthDate = birthDate;
 		this.password = password;
-		this.permissions = permissions;
 	}
 
 	public String getName() {
