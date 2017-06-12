@@ -16,6 +16,8 @@ public class User {
 	private String password;
 	private List<Permission> permissions;
 
+	public User() {}
+
 	public User(String name, String id, String email, String mobile, Date birthDate, String password) {
 		this.name = name;
 		this.id = id;

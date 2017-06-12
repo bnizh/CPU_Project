@@ -4,14 +4,21 @@ import common.users.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class DatabaseManagerImpl implements DatabaseManager {
 
 	@Override
 	public void createUser(User user, Connection connection) throws Exception {
-		String query = "INSERT INTO USERS (id,name,mobile,birthDate,email,password) VALUES ('"+user.getId()+"','"+user.getName()+"','"+user.getMobile()+"','"+user.getBirthDate()+","+user.getEmail()+"','"+user.getPassword()+"')";
-		helper(query,connection);
+		String query = "INSERT INTO [dbo].[USERS] ([id],[name],[mobile],[birthDate],[email],[password]) VALUES ( ?,?,?,?,?,? )";
+
+		PreparedStatement stm = connection.prepareStatement(query);
+		stm.setString(1, user.getId());
+		stm.setString(2, user.getName());
+		stm.setString(3, user.getMobile());
+		stm.setDate(4, user.getBirthDate());
+		stm.setString(5, user.getEmail());
+		stm.setString(6, user.getPassword());
+		stm.execute();
 	}
 
 	@Override
@@ -29,8 +36,4 @@ public class DatabaseManagerImpl implements DatabaseManager {
 
 	}
 
-	private void helper(String query, Connection connection) throws SQLException {
-		PreparedStatement stm = connection.prepareStatement(query);
-		stm.execute();
-	}
 }

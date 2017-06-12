@@ -111,7 +111,7 @@ class RegistrationForm extends React.Component {
         };
         console.log(data);
         $.ajax({
-            url: "http://localhost:8080/signUp",
+            url: "/signUp",
             method: "POST",
             data: data,
             dataType: "html"

@@ -39,7 +39,7 @@ class LoginModal extends React.Component {
 
     postRequest = (event) => {
         $.ajax({
-            url: "http://localhost:8080/logIn",
+            url: "/logIn",
             method: "POST",
             data: {
                 id : $('#idInput').val(),
