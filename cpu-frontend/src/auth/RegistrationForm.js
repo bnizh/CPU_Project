@@ -60,6 +60,7 @@ class RegistrationForm extends React.Component {
                             label={{ icon: 'asterisk' }}
                             labelPosition='left corner'
                             placeholder='პირადი ნომერი'
+                               required="true"
                         />
                     </Form.Field>
                     <Form.Field>
@@ -67,6 +68,7 @@ class RegistrationForm extends React.Component {
                             label={{ icon: 'asterisk' }}
                             labelPosition='left corner'
                             placeholder='პაროლი'
+                                required="true"
                         />
                         <Progress percent={this.state.passScore} indicating/>
                     </Form.Field>
@@ -75,6 +77,7 @@ class RegistrationForm extends React.Component {
                             label={{ icon: 'asterisk' }}
                             labelPosition='left corner'
                             placeholder='სახელი'
+                               required="true"
                         />
                     </Form.Field>
                     <Form.Field>
@@ -85,13 +88,21 @@ class RegistrationForm extends React.Component {
                     </Form.Field>
                     <Form.Field>
                         <Input type='number' id="mobileInput"
-                               label={{ icon: 'asterisk' }}
                                labelPosition='left corner'
                                placeholder='ტელეფონის ნომერი'
                         />
                     </Form.Field>
                     <Form.Field>
-                        <Calendar format={"DD-MM-YYYY"} closeOnSelect={true} todayText={'დღეს'} inputFieldClass={"dateValue"} placeholder={'აირჩიეთ დაბადების თარიღი'} nonEditable={true} inputFieldId={"dateInput"} />
+                        <Calendar label={{ icon: 'asterisk' }}
+                                  labelPosition='left corner'
+                                  format={"DD-MM-YYYY"}
+                                  required="true"
+                                  closeOnSelect={true}
+                                  todayText={'დღეს'}
+                                  inputFieldClass={"dateValue"}
+                                  placeholder={'აირჩიეთ დაბადების თარიღი'}
+                                  nonEditable={false}
+                                  inputFieldId={"dateInput"} />
                     </Form.Field>
                     <Button type='submit'>დადასტურება</Button>
                 </Form>

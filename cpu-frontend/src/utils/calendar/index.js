@@ -9,6 +9,7 @@ import DaysView from './day-view'
 import MonthsView from './month-view'
 import YearsView from './year-view'
 import Util from './util'
+import {Input} from 'semantic-ui-react'
 
 class Calendar extends React.Component {
     constructor(props, context) {
@@ -334,6 +335,7 @@ class Calendar extends React.Component {
         return (
             <div className="input-calendar">
               <input
+                  required={this.props.required}
                   name={this.props.inputName}
                   className={inputClass}
                   id={this.props.inputFieldId}
@@ -345,6 +347,8 @@ class Calendar extends React.Component {
                   disabled={this.props.nonEditable}
                   type="text"
                   value={this.state.inputValue || ''}
+                  label={this.props.label}
+                  labelPosition={this.props.labelPosition}
               />
                 {calendarIcon}
                 {calendar}

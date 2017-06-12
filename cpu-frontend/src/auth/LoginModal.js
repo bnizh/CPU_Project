@@ -21,14 +21,14 @@ class LoginModal extends React.Component {
                 <Form onSubmit={this.postRequest}>
                     <Form.Field>
                         <Input type='number' id="idInput" onChange={() => this.handleLoginKeyUp('idInput')}
-                               labelPosition='left corner'
-                               placeholder='პირადი ნომერი'
+                               labelPosition='left corner' label={{ icon: 'asterisk' }}
+                               placeholder='პირადი ნომერი' required="true"
                         />
                     </Form.Field>
                     <Form.Field>
                         <Input type={'password'} id="passInput"
-                            labelPosition='left corner'
-                            placeholder='პაროლი'
+                            labelPosition='left corner' label={{ icon: 'asterisk' }}
+                            placeholder='პაროლი' required="true"
                         />
                     </Form.Field>
                     <Button type='submit'>სისტემაში შესვლა</Button>
