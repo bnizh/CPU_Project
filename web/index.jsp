@@ -1,12 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="semantic/calendar/dist/calendar.min.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
 <script src="semantic/dist/semantic.min.js"></script>
+<script src="semantic/calendar/dist/calendar.min.js"></script>
 <head>
     <title>CPU</title>
 </head>
@@ -59,6 +61,12 @@
                     <i class="asterisk icon"></i>
                 </div>
             </div>
+            <div style="width: 90% !important; margin-bottom: 5px !important;" class="ui calendar" id="date">
+                <div style="width: 100% !important;" class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input style="width: 100% !important;" type="text" placeholder="აირჩიეთ დაბადების თარიღი">
+                </div>
+            </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
                 <input required="true" type="password" type="text" placeholder="პაროლი" onkeydown="(function() {
                       var progress = $('#progressBar');
@@ -89,5 +97,12 @@
         </form>
     </div>
 </div>
+<script type="text/javascript">
+    window.onload = function() {
+        $('#date').calendar({
+            type: 'date'
+        });
+    };
+</script>
 </body>
 </html>
