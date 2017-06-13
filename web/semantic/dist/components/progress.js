@@ -407,7 +407,7 @@ $.fn.progress = function(parameters) {
             }
             else {
               $bar
-                .css('width', value + '%')
+                .css('width', value)
               ;
               $module
                 .attr('data-percent', parseInt(value, 10))
@@ -428,9 +428,7 @@ $.fn.progress = function(parameters) {
             ;
           },
           percent: function(percent) {
-            percent = (typeof percent == 'string')
-              ? +(percent.replace('%', ''))
-              : percent
+            percent = percent
             ;
             // round display percentage
             percent = (settings.precision > 0)
@@ -889,8 +887,8 @@ $.fn.progress.settings = {
   error    : {
     method     : 'The method you called is not defined.',
     nonNumeric : 'Progress value is non numeric',
-    tooHigh    : 'Value specified is above 100%',
-    tooLow     : 'Value specified is below 0%'
+    tooHigh    : 'Value specified is above 100',
+    tooLow     : 'Value specified is below 0'
   },
 
   regExp: {
@@ -914,7 +912,7 @@ $.fn.progress.settings = {
     error   : false,
     success : false,
     warning : false,
-    percent : '{percent}%',
+    percent : '{percent}',
     ratio   : '{value} of {total}'
   },
 

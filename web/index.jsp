@@ -11,65 +11,83 @@
     <title>CPU</title>
 </head>
 <body>
-    <div class="login">
-        <button class="ui button" onclick="(function() {
+<div class="login">
+    <button class="ui button" onclick="(function() {
+            if ($('#signUpModal').hasClass('active')) {
+                $('#signUpModal').hide();
+            }
             $('#loginModal').show();
+
         })()">სისტემაში შესვლა</button>
-        <button class="ui positive button" onclick="(function() {
+    <button class="ui positive button" onclick="(function() {
+            if ($('#loginModal').hasClass('active')) {
+                $('#loginModal').hide();
+            }
             $('#signUpModal').show();
         })()">რეგისტრაცია</button>
-    </div>
+</div>
 
-    <%--login and sign up modals--%>
-    <div style="width: 35%" id="loginModal" class="ui modal">
-        <div class="header">შიყვანეთ მონაცემები</div>
-        <div class="content">
-            <div style="width: 90%" class="ui left corner labeled input">
+<%--login and sign up modals--%>
+<div style="width: 40%" id="loginModal" class="ui modal centerModal">
+    <div class="header">შიყვანეთ მონაცემები</div>
+    <div class="content">
+        <form class="ui fluid form">
+            <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
                 <input required="true" type="number" type="text" placeholder="პირადი ნომერი">
-                <div class="ui left corner label">
+                <div class="ui corner label">
                     <i class="asterisk icon"></i>
                 </div>
             </div>
-            <div style="width: 90%" class="ui left corner labeled input">
+            <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
                 <input required="true" type="password" type="text" placeholder="პაროლი">
-                <div class="ui left corner label">
+                <div class="ui corner label">
                     <i class="asterisk icon"></i>
                 </div>
             </div>
-        </div>
-        <div class="actions">
-            <div class="ui positive button">სისტემაში შესვლა</div>
-        </div>
+            <button class="ui submit positive button">სისტემაში შესვლა</button>
+        </form>
     </div>
+</div>
 
-    <div style="width: 35%" id="signUpModal" class="ui modal">
-        <div class="header">შიყვანეთ მონაცემები</div>
-        <div class="content">
-            <div style="width: 90%" class="ui left corner labeled input">
+<div style="width: 40%" id="signUpModal" class="ui modal centerModalBig">
+    <div class="header">შიყვანეთ მონაცემები</div>
+    <div class="content">
+        <form class="ui fluid form">
+            <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
                 <input required="true" type="number" type="text" placeholder="პირადი ნომერი">
-                <div class="ui left corner label">
+                <div class="ui corner label">
                     <i class="asterisk icon"></i>
                 </div>
             </div>
-            <div style="width: 90%" class="ui left corner labeled input">
+            <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
                 <input required="true" type="password" type="text" placeholder="პაროლი" onkeydown="(function() {
                       var progress = $('#progressBar');
                       progress.progress('increment', 10);
                 })()">
-                <div class="ui left corner label">
+                <div class="ui corner label">
                     <i class="asterisk icon"></i>
                 </div>
             </div>
-            <div style="width: 90%" id="progressBar" class="ui indicating progress">
-                <div class="bar">
-                    <div class="progress"></div>
+            <div style="width: 90%; height: 30px; margin-bottom: 5px; margin-top: 0px" id="progressBar" class="ui indicating progress">
+                <div style="height: 30px;" class="bar">
+                    <div style="height: 30px;" class="progress"></div>
                 </div>
             </div>
-        </div>
-        <div class="actions">
-            <div class="ui positive button">რეგისტრაცია</div>
-        </div>
+            <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
+                <input required="true" type="text" type="text" placeholder="სახელი და გვარი">
+            </div>
+            <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
+                <input type="text" type="email" placeholder="ელოქტრონული ფოსტა">
+                <div class="ui corner label">
+                    <i class="mail icon"></i>
+                </div>
+            </div>
+            <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
+                <input type="number" placeholder="ტელეფონის ნომერი">
+            </div>
+            <button class="ui submit positive button">რეგისტრაცია</button>
+        </form>
     </div>
-
+</div>
 </body>
 </html>

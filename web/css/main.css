@@ -2,3 +2,23 @@
     float: right;
     padding: 1%;
 }
+
+.centerModal {
+    left: 30% !important;
+    top: 30% !important;
+    margin: 0 !important;
+}
+
+.centerModalBig {
+    left: 30% !important;
+    top: 20% !important;
+    margin: 0 !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
