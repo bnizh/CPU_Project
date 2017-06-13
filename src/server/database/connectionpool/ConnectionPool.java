@@ -15,7 +15,7 @@ public class ConnectionPool {
 
 	private ConnectionPool(){
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl(DbInfo.DATABASE_INSTANCE);
 		dataSource.setUsername(DbInfo.DATABASE_USERNAME);
 		dataSource.setPassword(DbInfo.DATABASE_PASSWORD);

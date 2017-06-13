@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -48,6 +49,7 @@ public class SingUpServlet extends HttpServlet {
 			req.getSession().setAttribute("user", user);
 			manager.createUser(user, connection);
 		} catch (Exception e) {
+			e.printStackTrace();
 			try {
 				if (connection != null) {
 					connection.close();
@@ -60,6 +62,27 @@ public class SingUpServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = resp.getWriter();
+
+		out.println("<!DOCTYPE html>");
+
+		out.println("<head>");
+
+		out.println("<meta charset=\"UTF-8\" />");
+
+		out.println("<title>A Basic Servlet Example</title>");
+
+		out.println("</head>");
+
+		out.println("<body>");
+
+		out.println("<h1>"+req.getParameter("id")+"</h1>");
+
+		out.println("</body>");
+
+		out.println("</html>");
 
 	}
 }
