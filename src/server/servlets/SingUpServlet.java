@@ -4,14 +4,15 @@ import common.users.User;
 import server.database.connectionpool.ConnectionPool;
 import server.database.manager.DatabaseManager;
 import server.database.manager.DatabaseManagerImpl;
+import utils.ConnectionHashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -19,7 +20,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 
-@WebServlet("/signUp")
+@WebServlet(asyncSupported = true, urlPatterns = {"/signUp"})
 public class SingUpServlet extends HttpServlet {
 
 	@Override
@@ -36,20 +37,16 @@ public class SingUpServlet extends HttpServlet {
 			user.setPassword(req.getParameter("pass"));
 			user.setEmail(req.getParameter("email"));
 			DatabaseManager manager = new DatabaseManagerImpl();
-			HttpSession session = req.getSession(false);
-			if (session == null)
-				session = req.getSession(true);
-			if (session.isNew()) {
+			String sessionId = req.getSession().getId();
+			connection = ConnectionHashMap.getInstance().get(sessionId);
+
+			if (connection == null) {
 				connection = ConnectionPool.getInstance().getConnection();
-			} else {
-				connection = (Connection) session.getAttribute("Connection");
+				ConnectionHashMap.getInstance().put(sessionId, connection);
 			}
+
+			req.getSession().setAttribute("user", user);
 			manager.createUser(user, connection);
-			session.setAttribute("Connection", connection);
-			session.setAttribute("User", user);
-			session.setAttribute("test", "test");
-			resp.addCookie(new Cookie("sessionId", session.getId()));
-			resp.sendRedirect("index.html");
 		} catch (Exception e) {
 			try {
 				if (connection != null) {
