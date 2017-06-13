@@ -9,7 +9,7 @@ public class DatabaseManagerImpl implements DatabaseManager {
 
 	@Override
 	public void createUser(User user, Connection connection) throws Exception {
-		String query = "INSERT INTO [dbo].[USERS] ([id],[name],[mobile],[birthDate],[email],[password]) VALUES ( ?,?,?,?,?,? )";
+		String query = "INSERT INTO USERS (id, name, mobile, birthDate, email, password) VALUES ( ?,?,?,?,?,? )";
 
 		PreparedStatement stm = connection.prepareStatement(query);
 		stm.setString(1, user.getId());
