@@ -8,6 +8,8 @@
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
 <script src="semantic/dist/semantic.min.js"></script>
+<script src="scripts/utils.js"></script>
+<script src="http://www.myersdaily.org/joseph/javascript/md5.js"></script>
 <script src="semantic/calendar/dist/calendar.min.js"></script>
 <head>
     <title>CPU</title>
@@ -30,18 +32,18 @@
 </div>
 
 <%--login and sign up modals--%>
-<div style="width: 40%" id="loginModal" class="ui modal centerModal">
+<div style="width: 30%" id="loginModal" class="ui modal centerModal">
     <div class="header">შიყვანეთ მონაცემები</div>
     <div class="content">
         <form class="ui fluid form">
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input required="true" type="number" type="text" placeholder="პირადი ნომერი">
+                <input required="true" type="number" type="text" id="idInputLogin" placeholder="პირადი ნომერი">
                 <div class="ui corner label">
                     <i class="asterisk icon"></i>
                 </div>
             </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input required="true" type="password" type="text" placeholder="პაროლი">
+                <input required="true" type="password" type="text" id="passInputLogin" placeholder="პაროლი">
                 <div class="ui corner label">
                     <i class="asterisk icon"></i>
                 </div>
@@ -54,9 +56,27 @@
 <div style="width: 40%" id="signUpModal" class="ui modal centerModalBig">
     <div class="header">შიყვანეთ მონაცემები</div>
     <div class="content">
-        <form class="ui fluid form">
+        <form class="ui fluid form" onsubmit="(function(){
+            let pass = md5($('#passInput').val());
+            let data = {
+                id : $('#idInput').val(),
+                pass : pass,
+                email : $('#mailInput').val(),
+                name : $('#nameInput').val(),
+//                date : $('#dateInput').val(),
+                date : '04-04-1994',
+                mobile : $('#mobileInput').val()
+            };
+            $.ajax({
+                url: '/signUp',
+                method: 'POST',
+                data: data,
+                dataType: 'html'
+            });
+
+        })()">
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input required="true" type="number" type="text" placeholder="პირადი ნომერი">
+                <input required="true" type="number" type="text" id="idInput" placeholder="პირადი ნომერი">
                 <div class="ui corner label">
                     <i class="asterisk icon"></i>
                 </div>
@@ -68,9 +88,10 @@
                 </div>
             </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input required="true" type="password" type="text" placeholder="პაროლი" onkeydown="(function() {
+                <input required="true" type="password" type="text" id="passInput" placeholder="პაროლი" onkeyup="(function() {
                       var progress = $('#progressBar');
-                      progress.progress('increment', 10);
+                      progress.progress('set progress', calcPassScore($('#passInput').val()));
+
                 })()">
                 <div class="ui corner label">
                     <i class="asterisk icon"></i>
@@ -82,16 +103,16 @@
                 </div>
             </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input required="true" type="text" type="text" placeholder="სახელი და გვარი">
+                <input required="true" type="text" type="text" placeholder="სახელი და გვარი" id="nameInput">
             </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input type="text" type="email" placeholder="ელოქტრონული ფოსტა">
+                <input type="text" type="email" placeholder="ელოქტრონული ფოსტა" id="mailInput">
                 <div class="ui corner label">
                     <i class="mail icon"></i>
                 </div>
             </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input type="number" placeholder="ტელეფონის ნომერი">
+                <input type="number" placeholder="ტელეფონის ნომერი" id="mobileInput">
             </div>
             <button class="ui submit positive button">რეგისტრაცია</button>
         </form>
