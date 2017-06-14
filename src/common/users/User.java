@@ -14,6 +14,7 @@ public class User {
 	private String mobile;
 	private Date birthDate;
 	private String password;
+	private boolean isActive;
 	private List<Permission> permissions;
 
 	public User() {}
@@ -81,5 +82,13 @@ public class User {
 
 	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
+	}
+
+	public boolean isActive() {
+		return this.isActive;
+	}
+
+	public void setActive(boolean active) {
+		this.isActive = active;
 	}
 }

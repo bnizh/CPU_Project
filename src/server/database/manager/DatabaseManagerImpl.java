@@ -9,7 +9,7 @@ public class DatabaseManagerImpl implements DatabaseManager {
 
 	@Override
 	public void createUser(User user, Connection connection) throws Exception {
-		String query = "INSERT INTO USERS (id, name, mobile, birthDate, email, password) VALUES ( ?,?,?,?,?,? )";
+		String query = "INSERT INTO USERS (id, name, mobile, birthDate, email, password, isActive) VALUES ( ?,?,?,?,?,?,? )";
 
 		PreparedStatement stm = connection.prepareStatement(query);
 		stm.setString(1, user.getId());
@@ -18,6 +18,7 @@ public class DatabaseManagerImpl implements DatabaseManager {
 		stm.setDate(4, user.getBirthDate());
 		stm.setString(5, user.getEmail());
 		stm.setString(6, user.getPassword());
+		stm.setBoolean(7, user.isActive());
 		stm.execute();
 	}
 

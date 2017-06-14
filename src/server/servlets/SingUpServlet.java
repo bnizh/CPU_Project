@@ -37,6 +37,7 @@ public class SingUpServlet extends HttpServlet {
 			user.setName(req.getParameter("name"));
 			user.setPassword(req.getParameter("pass"));
 			user.setEmail(req.getParameter("email"));
+			user.setActive(false);
 			DatabaseManager manager = new DatabaseManagerImpl();
 			String sessionId = req.getSession().getId();
 			connection = ConnectionHashMap.getInstance().get(sessionId);
@@ -48,6 +49,7 @@ public class SingUpServlet extends HttpServlet {
 
 			req.getSession().setAttribute("user", user);
 			manager.createUser(user, connection);
+			new SendMail().sendEmail(user.getEmail(), "here comes the link");
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
@@ -83,6 +85,7 @@ public class SingUpServlet extends HttpServlet {
 		out.println("</body>");
 
 		out.println("</html>");
+		System.out.println("recived " + req.getParameter("id"));
 
 	}
 }

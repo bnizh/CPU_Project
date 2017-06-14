@@ -10,7 +10,8 @@ CREATE TABLE USERS (
   mobile varchar(64),
   birthDate DATE not null,
   email VARCHAR(64) not null,
-  password VARCHAR(255) not null
+  password VARCHAR(255) not null,
+  isActive BOOL not NUll
 );
 
 CREATE TABLE PERMISSION(
