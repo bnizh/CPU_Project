@@ -17,16 +17,11 @@
 <body>
 <div class="login">
     <button class="ui button" onclick="(function() {
-            if ($('#signUpModal').hasClass('active')) {
-                $('#signUpModal').hide();
-            }
+            $('#signUpModal').hide();
             $('#loginModal').show();
-
         })()">სისტემაში შესვლა</button>
     <button class="ui positive button" onclick="(function() {
-            if ($('#loginModal').hasClass('active')) {
-                $('#loginModal').hide();
-            }
+            $('#loginModal').hide();
             $('#signUpModal').show();
         })()">რეგისტრაცია</button>
 </div>
@@ -37,13 +32,13 @@
     <div class="content">
         <form class="ui fluid form">
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input required="true" type="number" type="text" id="idInputLogin" placeholder="პირადი ნომერი">
+                <input required="true" type="number" id="idInputLogin" placeholder="პირადი ნომერი">
                 <div class="ui corner label">
                     <i class="asterisk icon"></i>
                 </div>
             </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input required="true" type="password" type="text" id="passInputLogin" placeholder="პაროლი">
+                <input required="true" type="password" id="passInputLogin" placeholder="პაროლი">
                 <div class="ui corner label">
                     <i class="asterisk icon"></i>
                 </div>
@@ -76,7 +71,7 @@
 
         })()">
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input required="true" type="number" type="text" id="idInput" placeholder="პირადი ნომერი">
+                <input required="true" type="number" id="idInput" placeholder="პირადი ნომერი">
                 <div class="ui corner label">
                     <i class="asterisk icon"></i>
                 </div>
@@ -88,7 +83,7 @@
                 </div>
             </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input required="true" type="password" type="text" id="passInput" placeholder="პაროლი" onkeyup="(function() {
+                <input required="true" type="password" id="passInput" placeholder="პაროლი" onkeyup="(function() {
                       var progress = $('#progressBar');
                       progress.progress('set progress', calcPassScore($('#passInput').val()));
 
@@ -103,10 +98,10 @@
                 </div>
             </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input required="true" type="text" type="text" placeholder="სახელი და გვარი" id="nameInput">
+                <input required="true" type="text" placeholder="სახელი და გვარი" id="nameInput">
             </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input type="text" type="email" placeholder="ელოქტრონული ფოსტა" id="mailInput">
+                <input type="email" placeholder="ელოქტრონული ფოსტა" id="mailInput">
                 <div class="ui corner label">
                     <i class="mail icon"></i>
                 </div>
