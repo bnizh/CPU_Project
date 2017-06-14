@@ -101,7 +101,7 @@
                 <input required="true" type="text" placeholder="სახელი და გვარი" id="nameInput">
             </div>
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
-                <input type="email" placeholder="ელოქტრონული ფოსტა" id="mailInput">
+                <input type="email" placeholder="ელოქტრონული ფოსტა" id="mailInput" required="true">
                 <div class="ui corner label">
                     <i class="mail icon"></i>
                 </div>
