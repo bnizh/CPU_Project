@@ -4,12 +4,12 @@ import common.users.User;
 import server.database.connectionpool.ConnectionPool;
 import server.database.manager.DatabaseManager;
 import server.database.manager.DatabaseManagerImpl;
+import server.services.mailservice.SendMail;
+import server.services.mailservice.confirmation.MailConfirmationProducer;
 import utils.ConnectionHashMap;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,7 +49,7 @@ public class SingUpServlet extends HttpServlet {
 
 			req.getSession().setAttribute("user", user);
 			manager.createUser(user, connection);
-			new SendMail().sendEmail(user.getEmail(), "here comes the link");
+			MailConfirmationProducer.getInstance().sendConfirmationMail(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {

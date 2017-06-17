@@ -1,4 +1,4 @@
-package server.servlets;
+package server.services.mailservice;
 
 /**
  * Created by andro on 6/14/17.
@@ -19,9 +19,9 @@ public class SendMail {
     private static final String SRC_MAIL_ADDRESS = "akasr13@freeuni.edu.ge"; //sends from
     private static final String SRC_MAIL_PASSWORD = "12200139";	//user password
 
-    private Properties mailServerProperties;
-    private Session getMailSession;
-    private MimeMessage generateMailMessage;
+    private static Properties mailServerProperties;
+    private static Session getMailSession;
+    private static MimeMessage generateMailMessage;
 
 
     public SendMail(){
@@ -33,7 +33,7 @@ public class SendMail {
      * sends message to mailAdress from SRC_MAIL_ADDRESS
      * message should be in HTML String format
      */
-    public void sendEmail(String mailAddress, String message) throws AddressException, MessagingException {
+    public static void sendEmail(String mailAddress, String message) throws AddressException, MessagingException {
 
         mailServerProperties = System.getProperties();
         mailServerProperties.put("mail.smtp.port", "587");

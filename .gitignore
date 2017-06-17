@@ -109,6 +109,7 @@ fabric.properties
 
 ### java ###
 *.class
+src/server/database/manager/DbInfo.java
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
