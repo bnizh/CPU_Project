@@ -13,11 +13,30 @@
 <script src="semantic/calendar/dist/calendar.min.js"></script>
 <head>
     <title>CPU</title>
+    <script>
+        $(document).ready(function () {
+            alert("slide over the \"patient portal log-in\" logo to get info");
+        })
 
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#logo').hover(function () {
+                $('#infoModal').show();
+            }, function () {
+                $('#infoModal').hide();    })
+        })
+
+    </script>
 
 </head>
 <body>
 
+<div  class="info">
+
+    <img id="logo"src="250x250_PatientPortalLogin.png" alt="ლოგო არალი">
+    <h1 id="description">CLINIC PATIENT UNIT</h1>
+</div>
 
 
 <div class="login">
@@ -31,6 +50,13 @@
         })()">რეგისტრაცია</button>
 </div>
 
+
+<div  style = "width: 30%"id="infoModal"class="ui modal informationModal">
+    <div class="header">ინფორმაცია</div>
+    <div class="content">
+        <p>აქ იქნება ინფორმაცია საიტის ვიზიტორებისთვის</p>
+    </div>
+</div>
 <%--login and sign up modals--%>
 <div style="width: 30%" id="loginModal" class="ui modal centerModal">
     <div class="header">შიყვანეთ მონაცემები</div>
