@@ -3,8 +3,7 @@ package server.servlets;
 import common.users.User;
 import server.database.connectionpool.ConnectionPool;
 import server.database.manager.DatabaseManager;
-import server.database.manager.DatabaseManagerImpl;
-import server.services.mailservice.SendMail;
+import server.database.manager.UserManagerImpl;
 import server.services.mailservice.confirmation.MailConfirmationProducer;
 import utils.ConnectionHashMap;
 
@@ -38,7 +37,7 @@ public class SingUpServlet extends HttpServlet {
 			user.setPassword(req.getParameter("pass"));
 			user.setEmail(req.getParameter("email"));
 			user.setActive(false);
-			DatabaseManager manager = new DatabaseManagerImpl();
+			DatabaseManager manager = new UserManagerImpl();
 			String sessionId = req.getSession().getId();
 			connection = ConnectionHashMap.getInstance().get(sessionId);
 

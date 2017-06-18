@@ -2,7 +2,7 @@ package server.services.mailservice.confirmation;
 
 import common.users.User;
 import server.database.manager.DatabaseManager;
-import server.database.manager.DatabaseManagerImpl;
+import server.database.manager.UserManagerImpl;
 import server.services.mailservice.SendMail;
 
 import javax.mail.MessagingException;
@@ -43,7 +43,7 @@ public class MailConfirmationProducer {
 		boolean isCorrect = verifyUUID(user.getId(), activationCode);
 
 		if (isCorrect) {
-			DatabaseManager manager = new DatabaseManagerImpl();
+			DatabaseManager manager = new UserManagerImpl();
 			user.setActive(true);
 			try {
 				manager.updateUser(user, connection);
