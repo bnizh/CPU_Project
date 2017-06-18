@@ -43,10 +43,10 @@ public class MailConfirmationProducer {
 		boolean isCorrect = verifyUUID(user.getId(), activationCode);
 
 		if (isCorrect) {
-			DatabaseManager manager = new UserManagerImpl();
+			UserManagerImpl manager = new UserManagerImpl();
 			user.setActive(true);
 			try {
-				manager.updateUser(user, connection);
+				manager.updateObject(user, connection);
 				return true;
 			} catch (Exception ignore) {}
 		}
