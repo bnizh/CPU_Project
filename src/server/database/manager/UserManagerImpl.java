@@ -24,12 +24,46 @@ public class UserManagerImpl implements DatabaseManager {
 
 	@Override
 	public User getObjectById(String id, Connection connection) throws Exception {
-		return null;
+		String query = "SELECT * FROM USERS WHERE USERS.id=? ";
+		PreparedStatement stm = connection.prepareStatement(query);
+		stm.setString(1, id);
+		ResultSet resSet = stm.executeQuery();
+		while (resSet.next()){
+			String id = resSet.getString("id");
+			String name = resSet.getString("name");
+			String mobile = resSet.getString("mobile");
+			Date birthDate = resSet.getDate("birthDate");
+			String email = resSet.getString("email");
+			String password = resSet.getString("password");
+			//boolean isActive = resSet.getBoolean("isActive");
+		}
+		stm.close();
+		User user = new User(name, id, email, mobile, birthDate, password);
+
+
+
+		return user;
 	}
 
 	public User getUserByIdAndPassword(String id, String password, Connection connection) throws Exception {
-		return null;
+		String query = "SELECT * FROM USERS WHERE USERS.id= ? AND USERS.password= ? ";
+		PreparedStatement stm = connection.prepareStatement(query);		stm.setString(1, id);
+		stm.setString(2, password);
+		ResultSet resSet = stm.executeQuery();
+		while (resSet.next()){
+			String id = resSet.getString("id");
+			String name = resSet.getString("name");
+			String mobile = resSet.getString("mobile");
+			Date birthDate = resSet.getDate("birthDate");
+			String email = resSet.getString("email");
+			String password = resSet.getString("password");
+			//boolean isActive = resSet.getBoolean("isActive");
+		}
+		stm.close();
+		User user = new User(name, id, email, mobile, birthDate, password);
+		return user;
 	}
+
 
 	@Override
 	public void updateObject(Object object, Connection connection) throws Exception {

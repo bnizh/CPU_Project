@@ -13,8 +13,13 @@
 <script src="semantic/calendar/dist/calendar.min.js"></script>
 <head>
     <title>CPU</title>
+
+
 </head>
 <body>
+
+
+
 <div class="login">
     <button class="ui button" onclick="(function() {
             $('#signUpModal').hide();
