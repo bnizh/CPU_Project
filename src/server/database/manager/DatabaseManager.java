@@ -12,4 +12,16 @@ public interface DatabaseManager {
 	User getUserByIdAndPassword(String id, String password) throws Exception;
 
 	void updateUser (User user) throws Exception;
+
+
+
+	void createHospital(Hospital hospital) throws Exception;
+
+	Hospital getHospitalById(String id) throws Exception;
+
+	void updateHospital (Hospital hospital) throws Exception;
+
+
+
+
 }
