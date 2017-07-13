@@ -8,4 +8,33 @@
         <session-timeout>30</session-timeout>
     </session-config>
 
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>LogIn</servlet-name>
+        <servlet-class>server.servlets.LogInServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SingUp</servlet-name>
+        <servlet-class>server.servlets.SingUpServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserActivation</servlet-name>
+        <servlet-class>server.servlets.UserActivationServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LogIn</servlet-name>
+        <url-pattern>/LogInServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SingUp</servlet-name>
+        <url-pattern>/SingUpServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserActivation</servlet-name>
+        <url-pattern>/UserActivationServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

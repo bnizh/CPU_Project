@@ -3,7 +3,9 @@ package server.database.manager;
 import common.users.User;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class UserManagerImpl implements DatabaseManager {
 
@@ -28,23 +30,20 @@ public class UserManagerImpl implements DatabaseManager {
         PreparedStatement stm = connection.prepareStatement(query);
         stm.setString(1, id);
         ResultSet resSet = stm.executeQuery();
+        User user = new User();
         if (!resSet.next()) return null;
         else {
             do {
-                String id = resSet.getString("id");
-                String name = resSet.getString("name");
-                String mobile = resSet.getString("mobile");
-                Date birthDate = resSet.getDate("birthDate");
-                String email = resSet.getString("email");
-                String password = resSet.getString("password");
-                //boolean isActive = resSet.getBoolean("isActive");
+                user.setId(resSet.getString("id"));
+                user.setName(resSet.getString("name"));
+                user.setMobile(resSet.getString("mobile"));
+                user.setBirthDate(resSet.getDate("birthDate"));
+                user.setEmail(resSet.getString("email"));
+                user.setPassword(resSet.getString("password"));
+                user.setActive(resSet.getBoolean("isActive"));
             } while (resSet.next());
         }
         stm.close();
-        User user = new User(name, id, email, mobile, birthDate, password);
-
-
-
         return user;
     }
 
@@ -54,21 +53,20 @@ public class UserManagerImpl implements DatabaseManager {
         stm.setString(1, id);
         stm.setString(2, password);
         ResultSet resSet = stm.executeQuery();
+        User user = new User();
         if (!resSet.next()) return null;
         else {
             do {
-                String id = resSet.getString("id");
-                String name = resSet.getString("name");
-                String mobile = resSet.getString("mobile");
-                Date birthDate = resSet.getDate("birthDate");
-                String email = resSet.getString("email");
-                String password = resSet.getString("password");
-                //boolean isActive = resSet.getBoolean("isActive");
-            }
-            while (resSet.next())
+                user.setId(resSet.getString("id"));
+                user.setName(resSet.getString("name"));
+                user.setMobile(resSet.getString("mobile"));
+                user.setBirthDate(resSet.getDate("birthDate"));
+                user.setEmail(resSet.getString("email"));
+                user.setPassword(resSet.getString("password"));
+                user.setActive(resSet.getBoolean("isActive"));
+            } while (resSet.next());
         }
         stm.close();
-        User user = new User(name, id, email, mobile, birthDate, password);
         return user;
     }
 

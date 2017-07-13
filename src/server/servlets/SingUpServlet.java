@@ -7,6 +7,7 @@ import server.database.manager.UserManagerImpl;
 import server.services.mailservice.confirmation.MailConfirmationProducer;
 import utils.ConnectionHashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +21,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 
-@WebServlet(asyncSupported = true, urlPatterns = {"/signUp"})
 public class SingUpServlet extends HttpServlet {
 
 	@Override
@@ -45,46 +45,26 @@ public class SingUpServlet extends HttpServlet {
 				connection = ConnectionPool.getInstance().getConnection();
 				ConnectionHashMap.getInstance().put(sessionId, connection);
 			}
-
-			req.getSession().setAttribute("user", user);
 			manager.createObject(user, connection);
+			PrintWriter out = resp.getWriter();
+			out.write("success");
+			out.close();
 			MailConfirmationProducer.getInstance().sendConfirmationMail(user);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			PrintWriter out = resp.getWriter();
+			out.write("error");
+			out.close();
 			try {
 				if (connection != null) {
 					connection.close();
 				}
-			} catch (SQLException e1) {
-				System.out.println("Can't close connection :" + connection + "error :" + e1.getMessage());
-			}
+			} catch (SQLException ignored) {}
 		}
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html; charset=UTF-8");
-
-		PrintWriter out = resp.getWriter();
-
-		out.println("<!DOCTYPE html>");
-
-		out.println("<head>");
-
-		out.println("<meta charset=\"UTF-8\" />");
-
-		out.println("<title>A Basic Servlet Example</title>");
-
-		out.println("</head>");
-
-		out.println("<body>");
-
-		out.println("<h1>"+req.getParameter("id")+"</h1>");
-
-		out.println("</body>");
-
-		out.println("</html>");
-		System.out.println("recived " + req.getParameter("id"));
 
 	}
 }

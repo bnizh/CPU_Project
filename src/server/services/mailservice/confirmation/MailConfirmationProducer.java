@@ -25,11 +25,9 @@ public class MailConfirmationProducer {
 	}
 
 	public boolean sendConfirmationMail (User user) {
-		String UUID = generateUUID(user.getId());
-		try {
-			SendMail.sendEmail(user.getEmail(), UUID);
-			return true;
-		} catch (MessagingException ignore) {}
+		Sender sender = new Sender(user);
+		Thread thread = new Thread(sender);
+		thread.start();
 		return false;
 	}
 
@@ -61,5 +59,18 @@ public class MailConfirmationProducer {
 
 	public void removeUUID (String userID) {
 		uuidStorage.remove(userID);
+	}
+	private class Sender implements Runnable {
+		private User user;
+		public Sender (User user) {
+			this.user = user;
+		}
+		@Override
+		public void run() {
+			String UUID = generateUUID(user.getId());
+			try {
+				SendMail.sendEmail(user.getEmail(), UUID);
+			} catch (MessagingException ignore) {}
+		}
 	}
 }

@@ -11,33 +11,11 @@
 <script src="scripts/utils.js"></script>
 <script src="http://www.myersdaily.org/joseph/javascript/md5.js"></script>
 <script src="semantic/calendar/dist/calendar.min.js"></script>
+<script src="scripts/functions.js"></script>
 <head>
     <title>CPU</title>
-    <script>
-        $(document).ready(function () {
-            alert("slide over the \"patient portal log-in\" logo to get info");
-        })
-
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('#logo').hover(function () {
-                $('#infoModal').show();
-            }, function () {
-                $('#infoModal').hide();    })
-        })
-
-    </script>
-
 </head>
 <body>
-
-<div  class="info">
-
-    <img id="logo"src="250x250_PatientPortalLogin.png" alt="ლოგო არალი">
-    <h1 id="description">CLINIC PATIENT UNIT</h1>
-</div>
-
 
 <div class="login">
     <button class="ui button" onclick="(function() {
@@ -61,7 +39,7 @@
 <div style="width: 30%" id="loginModal" class="ui modal centerModal">
     <div class="header">შიყვანეთ მონაცემები</div>
     <div class="content">
-        <form class="ui fluid form">
+        <form  class="ui fluid form" onsubmit="logIn(); return false;">
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
                 <input required="true" type="number" id="idInputLogin" placeholder="პირადი ნომერი">
                 <div class="ui corner label">
@@ -82,25 +60,7 @@
 <div style="width: 40%" id="signUpModal" class="ui modal centerModalBig">
     <div class="header">შიყვანეთ მონაცემები</div>
     <div class="content">
-        <form class="ui fluid form" onsubmit="(function(){
-            let pass = md5($('#passInput').val());
-            let data = {
-                id : $('#idInput').val(),
-                pass : pass,
-                email : $('#mailInput').val(),
-                name : $('#nameInput').val(),
-//                date : $('#dateInput').val(),
-                date : '04-04-1994',
-                mobile : $('#mobileInput').val()
-            };
-            $.ajax({
-                url: '/signUp',
-                method: 'POST',
-                data: data,
-                dataType: 'html'
-            });
-
-        })()">
+        <form class="ui fluid form" onsubmit="singUp()">
             <div style="width: 90%; margin-bottom: 5px" class="ui corner labeled input">
                 <input required="true" type="number" id="idInput" placeholder="პირადი ნომერი">
                 <div class="ui corner label">
@@ -150,6 +110,7 @@
             type: 'date'
         });
     };
+
 </script>
 </body>
 </html>

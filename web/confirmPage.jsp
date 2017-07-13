@@ -9,6 +9,7 @@
         crossorigin="anonymous"></script>
 <script src="semantic/dist/semantic.min.js"></script>
 <script src="scripts/utils.js"></script>
+<script src="scripts/functions.js"></script>
 <head>
     <title>CPU</title>
 </head>
@@ -19,33 +20,7 @@
 </div>
 
 <div style="position: absolute; left: 30%; top:30%; width: 40%; height: 40%">
-
-    <form class="ui fluid form" onsubmit="(function() {
-         $('#loading').addClass('active');
-         setTimeout(function () {
-            $.ajax({
-                url: '/userActivation',
-                method: 'POST',
-                data:{
-                   code: $('#code').val(),
-                   action: $('#action').val()
-                },
-                dataType: 'html'
-            }).done(function (response) {
-                if (response.get === 'incorrectCode') {
-                    $('#activationMessage').css('display', 'none');
-                    $('#errorMessage').css('display', 'block');
-                } else if (response.get === 'success') {
-                    $('#activationMessage').css('display', 'none');
-                    $('#successMessage').css('display', 'block');
-                    setTimeout(function() {
-                      window.location =
-                    },1000)
-                }
-            });
-            $('#loading').removeClass('active');
-        }, 1000);
-    })()">
+    <form class="ui fluid form" onsubmit="activateUser(); return false;">
         <div id="activationMessage" class="ui icon message">
             <i class="inbox icon"></i>
             <div class="content">
@@ -63,15 +38,22 @@
             <p>მადლობა რომ სარგებლობთ ჩვენი სერვისით</p>
         </div>
 
+        <div id="incorrectMessage" style="display: none" class="ui error message">
+            <div class="header">
+                თქვენ მიერ შეყვანილი კოდი არ ემთხვევა მეილზე გამოგზავნილს.
+            </div>
+            <p>გთხოვთ თავიდან შეიყვანოთ ან მოითხოვოთ ახალი კოდი</p>
+        </div>
+
         <div id="errorMessage" style="display: none" class="ui error message">
             <div class="header">
-                დაფიქსირდა შეცდომა
+                დაფიქსირდა გაუთვალისწინებელი შეცდომა
             </div>
-            <p>თქვენ მიერ შეყვანილი კოდი არ ემთხვევა მეილზე გამოგზავნილს. გთხოვთ თავიდან შეიყვანოთ ან მოითხოვოთ ახალი კოდი</p>
+            <p>გთხოვთ სცადოთ მოგვიანებით</p>
         </div>
 
         <div style="width:100%; margin-bottom: 10px" class="ui corner labeled input">
-            <input id="code" type="text" id="codeInput" placeholder="შეიყვანეთ აქტივაციის კოდი">
+            <input id="code" type="text" placeholder="შეიყვანეთ აქტივაციის კოდი">
             <div class="ui corner label">
                 <i class="asterisk icon"></i>
             </div>
@@ -86,7 +68,6 @@
         </div>
         <input hidden id="action" value=""/>
     </form>
-
 </div>
 </body>
 </html>
