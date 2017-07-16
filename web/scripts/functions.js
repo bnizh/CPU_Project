@@ -1,11 +1,11 @@
 function singUp() {
     var pass = md5($('#passInput').val());
+    console.log($('#dateInput').val());
     var data = {
         id : $('#idInput').val(),
         pass : pass,
         email : $('#mailInput').val(),
         name : $('#nameInput').val(),
-//                date : $('#dateInput').val(),
         date : '04-04-1994',
         mobile : $('#mobileInput').val()
     };
@@ -16,13 +16,11 @@ function singUp() {
         dataType: 'html'
     }).done(function (response) {
         if (response == "success") {
-            alert('test');
             window.location.replace("http://localhost:8080/confirmPage.jsp");
             console.log("redirect");
             console.log(window.location);
         }
     }).fail(function () {
-        alert('error');
     });
 }
 
@@ -40,13 +38,22 @@ function logIn() {
     }).done(function (response) {
         if (response == "false") {
             window.location.replace("http://localhost:8080/confirmPage.jsp");
-            console.log("redirect");
-            console.log(window.location);
         } else if (response == "true") {
             $('#loginModal').hide();
+            window.location.replace("http://localhost:8080/");
         }
     }).fail(function () {
-        alert('error');
+    });
+}
+
+function logOut() {
+    $.ajax({
+        url: '/LogOutServlet',
+        method: 'POST'
+    }).done(function (response) {
+        window.location.replace("http://localhost:8080/");
+    }).fail(function () {
+        window.location.replace("http://localhost:8080/");
     });
 }
 
