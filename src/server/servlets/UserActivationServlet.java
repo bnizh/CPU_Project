@@ -25,7 +25,6 @@ public class UserActivationServlet extends HttpServlet {
 				ConnectionHashMap.getInstance().put(sessionId, connection);
 			}
 			String action = req.getParameter("action");
-			String redirectURL = "";
 			User user = (User) req.getSession().getAttribute("user");
 			if (action.equals("verify")) {
 				String activationCode = req.getParameter("code");

@@ -17,6 +17,10 @@
         <servlet-class>server.servlets.LogInServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>server.servlets.LogOutServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SingUp</servlet-name>
         <servlet-class>server.servlets.SingUpServlet</servlet-class>
     </servlet>
@@ -28,6 +32,10 @@
     <servlet-mapping>
         <servlet-name>LogIn</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/LogOutServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SingUp</servlet-name>
