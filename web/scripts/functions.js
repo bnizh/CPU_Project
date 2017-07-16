@@ -1,12 +1,11 @@
 function singUp() {
     var pass = md5($('#passInput').val());
-    console.log($('#dateInput').val());
     var data = {
         id : $('#idInput').val(),
         pass : pass,
         email : $('#mailInput').val(),
         name : $('#nameInput').val(),
-        date : '04-04-1994',
+        date : $('.dateInput').val(),
         mobile : $('#mobileInput').val()
     };
     $.ajax({
@@ -17,8 +16,6 @@ function singUp() {
     }).done(function (response) {
         if (response == "success") {
             window.location.replace("http://localhost:8080/confirmPage.jsp");
-            console.log("redirect");
-            console.log(window.location);
         }
     }).fail(function () {
     });

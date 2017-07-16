@@ -998,7 +998,7 @@
     constantHeight: true, // add rows to shorter months to keep day calendar height consistent (6 rows)
     today: false,         // show a 'today/now' button at the bottom of the calendar
     closable: true,       // close the popup after selecting a date/time
-    monthFirst: true,     // month before day when parsing/converting date from/to text
+    monthFirst: false,     // month before day when parsing/converting date from/to text
     touchReadonly: true,  // set input to readonly on touch devices
     inline: false,        // create the calendar inline instead of inside a popup
     on: null,             // when to show the popup (defaults to 'focus' for input, 'click' for others)
@@ -1024,11 +1024,11 @@
     },
 
     text: {
-      days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-      months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      today: 'Today',
-      now: 'Now',
+      days: ['კვი ', 'ორ', 'სამ', 'ოთხ', 'ხუთ', 'პარ', 'შაბ'],
+      months: ['იანვარი', 'თებერვალი', 'მარტი', 'აპრილი', 'მაისი', 'ივნისი', 'ივლისი', 'აგვისტო', 'სექტემბერი', 'ოქტომბერი', 'ნოემბერი', 'დეკემბერი'],
+      monthsShort: ['იან', 'თებ', 'მარ', 'აპრ', 'მაი', 'ივნ', 'ივლ', 'აგვ', 'სექ', 'ოქტ', 'ნოემბ', 'დეკ'],
+      today: 'დრეს',
+      now: 'ახლა',
       am: 'AM',
       pm: 'PM'
     },
@@ -1080,7 +1080,7 @@
         var year = date.getFullYear();
         return settings.type === 'year' ? year :
           settings.type === 'month' ? month + ' ' + year :
-          (settings.monthFirst ? month + ' ' + day : day + ' ' + month) + ', ' + year;
+          (settings.monthFirst ? month + '-' + day : day + '-' + month) + '-' + year;
       },
       time: function (date, settings, forCalendar) {
         if (!date) {
