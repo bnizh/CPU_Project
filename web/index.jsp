@@ -31,6 +31,7 @@
             <a class="item" id="contactPage" onclick="(function() {
           $('.item').removeClass('active');
           $('#contactPage').addClass('active');
+          $('#menu-content').replaceWith($('#contactInfo'));
         })()">
                 კონტაქტი
             </a>
@@ -71,7 +72,7 @@
         </div>
     </div>
     <div style="height: 90%;" class="ui bottom attached segment">
-        <p></p>
+        <div id="menu-content"></div>
     </div>
 </div>
 
@@ -201,5 +202,24 @@
         }
     });
 </script>
+
+<div style="display: none">
+    <table style="position: relative; top: 30%; left:30%; width: 40%; height: 40%" id="contactInfo" class="ui definition table">
+        <tbody>
+        <tr>
+            <td><i class="call square icon"></i>საკონტაქტო ნომერი</td>
+            <td>598374781</td>
+        </tr>
+        <tr>
+            <td><i class="mail icon"></i>საკონტაქტო მეილი</td>
+            <td>bnizh14@freeuni.edu.ge</td>
+        </tr>
+        <tr>
+            <td><i class="wechat icon"></i>ონლაინ დახმარება</td>
+            <td style="align-content: center"><button class="ui button">ჩატის დაწყება</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
