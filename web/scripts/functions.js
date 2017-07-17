@@ -129,6 +129,13 @@ function updateUser() {
     });
 }
 
+function registerOperator() {
+    $.ajax({
+        url: '/ChatServlet',
+        method: 'POST',
+        dataType: 'html'
+    })
+}
 
 function sleep(seconds)
 {

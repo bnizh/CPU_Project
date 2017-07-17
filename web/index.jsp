@@ -3,15 +3,19 @@
 <html>
 <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.css">
 <link rel="stylesheet" type="text/css" href="semantic/calendar/dist/calendar.css">
+<link type="text/css" href="css/jquery.ui.chatbox.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="css/main.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.0.0-beta1.min.js"></script>
+<link rel="stylesheet" href="css/jquery-ui-1.8.2.custom.css"/>
+<script type="text/javascript" src="scripts/jquery-ui-1.8.2.custom.min.js"></script>
 <script src="semantic/dist/semantic.js"></script>
 <script src="scripts/utils.js"></script>
 <script src="http://www.myersdaily.org/joseph/javascript/md5.js"></script>
 <script src="semantic/calendar/dist/calendar.js"></script>
 <script src="scripts/functions.js"></script>
+<script type="text/javascript" src="scripts/jquery.ui.chatbox.js"></script>
+<script type="text/javascript" src="scripts/chatboxManager.js"></script>
+<script type="text/javascript" src="scripts/chat.js"></script>
 <head>
     <title>CPU</title>
 </head>
@@ -25,6 +29,7 @@
             <a class="item" id="homePage" onclick="(function() {
           $('.item').removeClass('active');
           $('#homePage').addClass('active');
+           $('#menu-content').replaceWith($('#calendar'));
         })()">
                 მთავარი
             </a>
@@ -101,6 +106,9 @@
 <%
     if (user != null) {
 %>
+<script type="text/javascript">
+    registerOperator();
+</script>
 <div style="width: 40%" id="updateModal" class="ui modal centerModalBig">
     <div class="header">შიყვანეთ მონაცემები</div>
     <div class="content">
@@ -216,10 +224,22 @@
         </tr>
         <tr>
             <td><i class="wechat icon"></i>ონლაინ დახმარება</td>
-            <td style="align-content: center"><button class="ui button">ჩატის დაწყება</button></td>
+            <td style="align-content: center"><button id="link_add" class="ui button">ჩატის დაწყება</button></td>
         </tr>
         </tbody>
     </table>
 </div>
+
+<div id="chat">
+    <input id="userId" type="hidden" value="<%=request.getSession().getId()%>">
+    <textarea id="username"
+              style="display: none"><%=(user != null ? user.getName() : "უცნობი")%></textarea>
+    <TEXTAREA id="input" style="display: none"></TEXTAREA>
+    <input type="text" id="txtMessage" style="display: none;margin-left: 45%;top: 5%;" class="form-control"
+           placeholder="Type your message here."/>
+    <input id="reciver-username" type="hidden" value="">
+    <input id="reciver-id" type="hidden" value="">
+</div>
+
 </body>
 </html>

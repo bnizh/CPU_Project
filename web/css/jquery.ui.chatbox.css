@@ -1,0 +1,64 @@
+.ui-chatbox {
+    border-radius: 5px;
+    position: fixed;
+    bottom:0;
+    padding: 2px;
+    background:  white;
+}
+
+.ui-chatbox-titlebar {
+    border-radius: 5px;
+    padding: 3px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.ui-chatbox-content {
+    border-radius: 5px;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+.ui-chatbox-log {
+    border-radius: 5px;
+    padding: 3px;
+    height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #FFFFFF;
+}
+
+.ui-chatbox-input {
+    border-radius: 5px;
+    padding: 3px;
+    border-top: 1px solid grey;
+    overflow: hidden;
+}
+
+.ui-chatbox-input-box {
+    border-radius: 5px;
+    margin: 5px;
+    border: 2px solid lightgrey;/* #6699FF */
+    padding: 2px;
+    height: 50px;
+}
+
+.ui-chatbox-icon {
+    border-radius: 5px;
+    float: right;
+}
+
+.ui-chatbox-input-focus {
+    border-color: #6699FF;
+}
+
+.ui-chatbox-msg {
+    margin-top: 10px;
+    float: left;
+    clear: both;
+    white-space: pre-wrap;      /* CSS3 */
+    white-space: -moz-pre-wrap; /* Firefox */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    word-wrap: break-word;      /* IE */
+}
