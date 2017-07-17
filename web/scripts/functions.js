@@ -106,6 +106,30 @@ function activateUser() {
     });
 }
 
+function updateUser() {
+    var pass = md5($('#updatePasswordInput').val());
+    var data = {
+        password : pass,
+        email : $('#updateMailInput').val(),
+        name : $('#updateNameInput').val(),
+        mobile : $('#updateMobileInput').val()
+    };
+    $.ajax({
+        url: '/UserUpdateServlet',
+        method: 'POST',
+        data: data,
+        dataType: 'html'
+    }).done(function (response) {
+        if (response == "mailChanged") {
+            window.location.replace("http://localhost:8080/confirmPage.jsp");
+        } else {
+            $('#updateModal').hide();
+        }
+    }).fail(function () {
+    });
+}
+
+
 function sleep(seconds)
 {
     var e = new Date().getTime() + (seconds * 1000);
