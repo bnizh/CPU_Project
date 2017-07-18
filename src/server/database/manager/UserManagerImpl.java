@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserManagerImpl implements DatabaseManager {
 
@@ -45,6 +47,30 @@ public class UserManagerImpl implements DatabaseManager {
         }
         stm.close();
         return user;
+    }
+
+    public List<User> getUserByIdPartial(String id, Connection con)throws Exception{
+        String query = "SELECT * FROM USERS WHERE USERS.id like '%" +id + "%'";
+        PreparedStatement stm = con.prepareStatement(query);
+        ResultSet resSet = stm.executeQuery();
+        List<User> users = new ArrayList<>();
+
+
+        while (resSet.next()) {
+            User user = new User();
+            user.setId(resSet.getString("id"));
+            user.setName(resSet.getString("name"));
+            user.setMobile(resSet.getString("mobile"));
+            user.setBirthDate(resSet.getDate("birthDate"));
+            user.setEmail(resSet.getString("email"));
+            user.setPassword(resSet.getString("password"));
+            user.setActive(resSet.getBoolean("isActive"));
+            users.add(user);
+        }
+
+        stm.close();
+
+        return users;
     }
 
     public User getUserByIdAndPassword(String id, String password, Connection connection) throws Exception {

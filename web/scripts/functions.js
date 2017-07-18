@@ -142,3 +142,44 @@ function sleep(seconds)
     var e = new Date().getTime() + (seconds * 1000);
     while (new Date().getTime() <= e) {}
 }
+function clickTest(caller){
+    data = {
+        id:$(caller).find('hidden').val()
+    };
+    $.ajax({
+        url: '/UserUpdateServlet',
+        method: 'POST',
+        data: data,
+        dataType: 'html'
+    }).done(function (response) {
+        if (response == "mailChanged") {
+            window.location.replace("http://localhost:8080/confirmPage.jsp");
+        } else {
+            $('#updateModal').hide();
+        }
+    }).fail(function () {
+    });
+}
+function adminSearchSuccess(data){
+    var users = JSON.parse(data);
+    if(users.length == 0) return;
+    var header = Object.keys(users[0]);
+    var div = '<div id="userGrid"><table class="ui selectable inverted table"><thead><tr>';
+    header.forEach(function(tmp){
+        div += '<th>'+tmp+'</th>';
+    });
+    div += '</tr></thead><tbody>';
+    users.forEach(function(temp){
+
+        div+='<tr onclick="clickTest(this)">';
+        header.forEach(function(key){
+            div+= '<td>'+temp[key]+'</td>';
+        });
+        var val = temp['id'];
+        div+= '<input type="hidden" value='+val+'>';
+        div+='</tr>';
+    });
+
+    div+='</tr></tbody></table></div>';
+    $('#userGrid').replaceWith(div);
+}
