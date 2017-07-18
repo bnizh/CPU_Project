@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="ui icon input focus" id="adminDiv">
-    <input type="text" placeholder="Search..." id="PersonSearch" <%--onkeyup="(function(){
+    <input type="text" placeholder="Search..." id="PersonSearch" onkeyup="(function(){
         $('#searchButton').trigger('onclick');
-    })()"--%>>
+    })()">
     <i class="inverted circular search link icon" id="searchButton" onclick="(function(){
         var data = {
             id : $('#PersonSearch').val()

@@ -162,7 +162,10 @@ function clickTest(caller){
 }
 function adminSearchSuccess(data){
     var users = JSON.parse(data);
-    if(users.length == 0) return;
+    if(users.length == 0) {
+        $('#userGrid').replaceWith("<div id='userGrid'></div>")
+        return;
+    }
     var header = Object.keys(users[0]);
     var div = '<div id="userGrid"><table class="ui selectable inverted table"><thead><tr>';
     header.forEach(function(tmp){
