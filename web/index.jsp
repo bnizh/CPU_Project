@@ -36,9 +36,17 @@
             <a class="item" id="contactPage" onclick="(function() {
           $('.item').removeClass('active');
           $('#contactPage').addClass('active');
-          $('#menu-content').replaceWith($('#contactInfo'));
+
+          $('#menu-content').find('div').find('div').replaceWith($('#contactInfo').clone());
         })()">
                 კონტაქტი
+            </a>
+            <a class="item" id="adminPage" onclick="(function() {
+          $('.item').removeClass('active');
+          $('#adminPage').addClass('active');
+          $('#menu-content').find('div').find('div').replaceWith($('#adminPageContent').clone());
+        })()">
+                ადმინისტრატორი
             </a>
         </div>
         <div class="right menu">
@@ -77,7 +85,11 @@
         </div>
     </div>
     <div style="height: 90%;" class="ui bottom attached segment">
-        <div id="menu-content"></div>
+        <div id="menu-content">
+            <div>
+                <div></div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -212,6 +224,27 @@
 </script>
 
 <div style="display: none">
+    <div id="contactInfo" style="position: relative; top: 30%; left:30%; width: 40%; height: 40%" >
+        <table  class="ui definition table">
+            <tbody>
+            <tr>
+                <td><i class="call square icon"></i>საკონტაქტო ნომერი</td>
+                <td>598374781</td>
+            </tr>
+            <tr>
+                <td><i class="mail icon"></i>საკონტაქტო მეილი</td>
+                <td>bnizh14@freeuni.edu.ge</td>
+            </tr>
+            <tr>
+                <td><i class="wechat icon"></i>ონლაინ დახმარება</td>
+                <td style="align-content: center"><button class="ui button">ჩატის დაწყება</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="adminPageContent">
+        <%@include file="admin.jsp" %>
+    </div>
     <table style="position: relative; top: 30%; left:30%; width: 40%; height: 40%" id="contactInfo" class="ui definition table">
         <tbody>
         <tr>
@@ -240,6 +273,7 @@
     <input id="reciver-username" type="hidden" value="">
     <input id="reciver-id" type="hidden" value="">
 </div>
+
 
 </body>
 </html>
