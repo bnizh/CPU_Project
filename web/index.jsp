@@ -29,7 +29,7 @@
             <a class="item" id="homePage" onclick="(function() {
           $('.item').removeClass('active');
           $('#homePage').addClass('active');
-           $('#menu-content').replaceWith($('#calendar'));
+           $('#menu-content').find('div').find('div').replaceWith('<div><p>home page</p></div>');
         })()">
                 მთავარი
             </a>
@@ -37,7 +37,7 @@
           $('.item').removeClass('active');
           $('#contactPage').addClass('active');
 
-          $('#menu-content').find('div').find('div').replaceWith($('#contactInfo').clone());
+          $('#menu-content').find('div').find('div').replaceWith($('#contactInfo'));
         })()">
                 კონტაქტი
             </a>
@@ -237,7 +237,7 @@
             </tr>
             <tr>
                 <td><i class="wechat icon"></i>ონლაინ დახმარება</td>
-                <td style="align-content: center"><button class="ui button">ჩატის დაწყება</button></td>
+                <td style="align-content: center"><button id="link_add" class="ui button">ჩატის დაწყება</button></td>
             </tr>
             </tbody>
         </table>
@@ -245,22 +245,7 @@
     <div id="adminPageContent">
         <%@include file="admin.jsp" %>
     </div>
-    <table style="position: relative; top: 30%; left:30%; width: 40%; height: 40%" id="contactInfo" class="ui definition table">
-        <tbody>
-        <tr>
-            <td><i class="call square icon"></i>საკონტაქტო ნომერი</td>
-            <td>598374781</td>
-        </tr>
-        <tr>
-            <td><i class="mail icon"></i>საკონტაქტო მეილი</td>
-            <td>bnizh14@freeuni.edu.ge</td>
-        </tr>
-        <tr>
-            <td><i class="wechat icon"></i>ონლაინ დახმარება</td>
-            <td style="align-content: center"><button id="link_add" class="ui button">ჩატის დაწყება</button></td>
-        </tr>
-        </tbody>
-    </table>
+
 </div>
 
 <div id="chat">

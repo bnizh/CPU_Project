@@ -61,9 +61,7 @@ public class UserManagerImpl implements DatabaseManager {
             user.setId(resSet.getString("id"));
             user.setName(resSet.getString("name"));
             user.setMobile(resSet.getString("mobile"));
-            user.setBirthDate(resSet.getDate("birthDate"));
             user.setEmail(resSet.getString("email"));
-            user.setPassword(resSet.getString("password"));
             user.setActive(resSet.getBoolean("isActive"));
             users.add(user);
         }

@@ -144,19 +144,15 @@ function sleep(seconds)
 }
 function clickTest(caller){
     data = {
-        id:$(caller).find('hidden').val()
+        id:$(caller).find('input').val()
     };
     $.ajax({
-        url: '/UserUpdateServlet',
+        url: '/AdminUserEditServlet',
         method: 'POST',
         data: data,
         dataType: 'html'
     }).done(function (response) {
-        if (response == "mailChanged") {
-            window.location.replace("http://localhost:8080/confirmPage.jsp");
-        } else {
-            $('#updateModal').hide();
-        }
+        console.log(response);
     }).fail(function () {
     });
 }
